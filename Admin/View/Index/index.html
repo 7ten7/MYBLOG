@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息管理（后台）</title>
+    <script type="text/javascript">
+        function confirmDel(id) {
+            if(window.confirm('你真的要删除吗？')){
+                location.href="?c=Index&a=delete&id="+id;
+            }
+        }
+    </script>
+</head>
+<body bgcolor="#ffcc99">
+<div align="center">
+</div>
+<div style="text-align: center;padding-bottom: 10px">
+    <h2>用户信息管理（后台）</h2>
+    <a href="#">添加用户</a>丨
+    共有<font color="red">250</font>位用户
+</div>
+<table width="400" border="1" align="center" rules="all" cellpadding="5">
+    <tr bgcolor="#7fffd4">
+        <th>编号</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>操作</th>
+    </tr>
+    <{foreach $arrs as $arr}>
+    <tr align="center">
+        <td><{$arr.id}></td>
+        <td><{$arr.username}></td>
+        <td><{$arr.password}></td>
+        <td><a href="#">修改</a>丨<a href="javascript:void(0)" onclick="confirmDel(<?php echo $arr['id'];?>)">删除</a></td>
+    </tr>
+    <{/foreach}>
+</table>
+</body>
+</html>
