@@ -27,4 +27,11 @@ abstract class BaseController
         //给$smarty属性赋值
         $this->smarty = $smarty;
     }
+
+    //受保护的跳转方法
+    protected function jump($message,$url='?',$time=3){
+        echo "<h2>{$message}</h2>";
+        header("refresh:{$time};url={$url}");
+        die();
+    }
 }

@@ -31,7 +31,7 @@
         <td><{$arr.id}></td>
         <td><{$arr.username}></td>
         <td><{$arr.password}></td>
-        <td><a href="#">修改</a>丨<a href="javascript:void(0)" onclick="confirmDel(<?php echo $arr['id'];?>)">删除</a></td>
+        <td><a href="#">修改</a>丨<a href="javascript:void(0)" onclick="confirmDel(<{$arr.id}>)">删除</a></td>
     </tr>
     <{/foreach}>
 </table>

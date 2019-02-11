@@ -31,7 +31,7 @@ class Frame
     }
     //初始化目录常量设置
     private static function initConst(){
-        define("VIEW_PATH",APP_PATH."View".DS.CONTROLLER.DS); //View目录
+        define("VIEW_PATH",APP_PATH."View".DS); //View目录
         define("FRAME_PATH",ROOT_PATH."Frame".DS);//Frame目录
     }
     private static function initAutoLoad(){

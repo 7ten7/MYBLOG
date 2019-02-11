@@ -11,4 +11,10 @@ final class IndexModel extends BaseModel
         //执行sql语句并返回结果
         return $this->pdo->fetchAll($sql);
     }
+
+    //删除记录
+    public function delete($id){
+        $sql = "DELETE FROM users WHERE id={$id}";
+        return $this->pdo->exec($sql);
+    }
 }

@@ -14,6 +14,18 @@ final class IndexController extends BaseController
         $arrs = $modelObj->fetchAll();
         //向视图赋值，并显示视图
         $this->smarty->assign("arrs",$arrs);
-        $this->smarty->display("index.html");
+        $this->smarty->display("Index/index.html");
+    }
+
+    //删除记录
+    public function delete(){
+        $id = $_GET['id'];
+        $modelObj = IndexModel::getInstance();
+        //判断是否删除成功
+        if($modelObj->delete($id)){
+            $this->jump("id={$id}的记录删除成功！","?c=Index");
+        }else{
+            $this->jump("id={$id}的记录删除失败！","?c=Index");
+        }
     }
 }
