@@ -1,4 +1,5 @@
 <?php
+include "./waf/drop_wiki.php";
 //定义常量
 define("DS",DIRECTORY_SEPARATOR);//目录分隔符
 define("ROOT_PATH",getcwd().DS);//网站根目录

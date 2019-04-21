@@ -29,9 +29,20 @@ abstract class BaseController
     }
 
     //受保护的跳转方法
-    protected function jump($message,$url='?',$time=3){
-        echo "<h2>{$message}</h2>";
-        header("refresh:{$time};url={$url}");
+    protected function jump($message='失败',$url='?',$time=5){
+        //向跳转视图赋值
+        $this->smarty->assign("message",$message);
+        $this->smarty->assign("url",$url);
+        $this->smarty->assign("time",$time);
+        //显示跳转视图
+        $this->smarty->display("Public/jump.html");
         die();
+    }
+
+    //判断用户是否已经登录
+    protected function checkLogin(){
+        if(!isset($_SESSION['username'])){
+            header("Location:?c=User&a=login");
+        }
     }
 }

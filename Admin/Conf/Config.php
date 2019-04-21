@@ -6,7 +6,7 @@ return array(
     'db_port' => '3306', //端口号
     'db_user' => 'root', //用户名
     'db_pass' => '',  //密码
-    'db_name' => 'security', //数据库名
+    'db_name' => 'blog', //数据库名
     'charset' => 'utf8', //字符集
 
     //后端默认URL路由

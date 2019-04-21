@@ -30,17 +30,17 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-          <a class="navbar-brand" href="/">YlsatCMS</a> </div>
+          <a class="navbar-brand" href="?c=Category&a=index">CMS</a> </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="">消息 <span class="badge">1</span></a></li>
-            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">admin <span class="caret"></span></a>
+            <li><a href="">消息 <span class="badge">0</span></a></li>
+            <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><{$smarty.session.username}> <span class="caret"></span></a>
               <ul class="dropdown-menu dropdown-menu-left">
                 <li><a title="查看或修改个人信息" data-toggle="modal" data-target="#seeUserInfo">个人信息</a></li>
                 <li><a title="查看您的登录记录" data-toggle="modal" data-target="#seeUserLoginlog">登录记录</a></li>
               </ul>
             </li>
-            <li><a href="/Index/outLogin" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
+            <li><a href="?c=User&a=outLogin" onClick="if(!confirm('是否确认退出？'))return false;">退出登录</a></li>
             <li><a data-toggle="modal" data-target="#WeChat">帮助</a></li>
           </ul>
           <form action="" method="post" class="navbar-form navbar-right" role="search">
@@ -57,19 +57,19 @@
   <div class="row">
     <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="main.html">报告</a></li>
+        <li class="active"><a href="?c=Index&a=index">报告</a></li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="article.html">文章</a></li>
-        <li><a href="notice.html">公告</a></li>
-        <li><a href="comment.html">评论</a></li>
+        <li><a href="?c=Article&a=index">文章</a></li>
+        <li><a data-toggle="modal" data-target="#areDeveloping">公告</a></li>
+        <li><a data-toggle="modal" data-target="#areDeveloping">评论</a></li>
         <li><a data-toggle="tooltip" data-placement="bottom" title="网站暂无留言功能">留言</a></li>
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="category.html">栏目</a></li>
+        <li><a href="?c=Category&a=index">栏目</a></li>
         <li><a class="dropdown-toggle" id="otherMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">其他</a>
           <ul class="dropdown-menu" aria-labelledby="otherMenu">
-            <li><a href="flink.html">友情链接</a></li>
+            <li><a href="?c=Link&a=index">友情链接</a></li>
             <li><a data-toggle="modal" data-target="#areDeveloping">访问记录</a></li>
           </ul>
         </li>
@@ -78,15 +78,15 @@
         <li><a class="dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">用户</a>
           <ul class="dropdown-menu" aria-labelledby="userMenu">
             <li><a data-toggle="modal" data-target="#areDeveloping">管理用户组</a></li>
-            <li><a href="manage-user.html">管理用户</a></li>
+            <li><a href="?c=User&a=add">管理用户</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="loginlog.html">管理登录日志</a></li>
+            <li><a data-toggle="modal" data-target="#areDeveloping">管理登录日志</a></li>
           </ul>
         </li>
         <li><a class="dropdown-toggle" id="settingMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">设置</a>
           <ul class="dropdown-menu" aria-labelledby="settingMenu">
-            <li><a href="setting.html">基本设置</a></li>
-            <li><a href="readset.html">阅读设置</a></li>
+            <li><a data-toggle="modal" data-target="#areDeveloping">基本设置</a></li>
+            <li><a data-toggle="modal" data-target="#areDeveloping">阅读设置</a></li>
             <li role="separator" class="divider"></li>
             <li><a data-toggle="modal" data-target="#areDeveloping">安全配置</a></li>
             <li role="separator" class="divider"></li>
@@ -100,13 +100,13 @@
       <div class="row placeholders">
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>文章</h4>
-          <span class="text-muted">0 条</span> </div>
+          <span class="text-muted"><{$ArticleNum}> 篇</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>评论</h4>
           <span class="text-muted">0 条</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>友链</h4>
-          <span class="text-muted">0 条</span> </div>
+          <span class="text-muted"><{$linkNum}> 条</span> </div>
         <div class="col-xs-6 col-sm-3 placeholder">
           <h4>访问量</h4>
           <span class="text-muted">0</span> </div>
@@ -116,10 +116,10 @@
         <table class="table table-striped table-hover">
           <tbody>
             <tr>
-              <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>
+              <td>登录者: <span><{$smarty.session.username}></span>，这是您第 <span><{$smarty.session.loginNum}></span> 次登录</td>
             </tr>
             <tr>
-              <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>
+              <td>上次登录时间: <{$smarty.session.lastLoginTime|date_format:'%Y-%m-%d %H:%M:%S'}> , 上次登录IP: <{$smarty.session.lastLoginIp}></td>
             </tr>
           </tbody>
         </table>
@@ -133,7 +133,7 @@
           <tbody>
             <tr>
               <td>管理员个数:</td>
-              <td>1 人</td>
+              <td><{$UserNum}> 人</td>
               <td>服务器软件:</td>
               <td><{$data['severSoftware']}></td>
             </tr>
@@ -159,12 +159,12 @@
               <td>程序版本:</td>
               <td class="version">CMS v 1.0 <font size="-6" color="#BBB">(20190212160215)</font></td>
               <td>上传文件:</td>
-              <td>可以 <font size="-6" color="#BBB">(最大文件：2M ，表单：8M )</font></td>
+              <td>暂无此功能</td>
             </tr>
             <tr>
               <td>程序编码:</td>
               <td>UTF-8</td>
-              <td>当前时间:</td>
+              <td>登录时间:</td>
               <td><{$data['time']}></td>
             </tr>
           </tbody>
@@ -179,7 +179,7 @@
         <table class="table table-striped table-hover">
           <tbody>
             <tr>
-              <td><span style="display:inline-block; width:8em">版权所有</span> POWERED BY WY ALL RIGHTS RESERVED</td>
+              <td><span style="display:inline-block; width:8em">版权所有</span> POWERED BY 7ten7 ALL RIGHTS RESERVED</td>
             </tr>
           </tbody>
         </table>
@@ -191,7 +191,7 @@
 <!--个人信息模态框-->
 <div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <form action="" method="post">
+        <form action="?c=User&a=update" method="post" autocomplete="off" draggable="false">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -204,16 +204,20 @@
                         </thead>
                         <tbody>
                         <tr>
+                            <td wdith="20%">ID:</td>
+                            <td width="80%"><input type="text" value="<{$smarty.session.uid}>" class="form-control" id="uid" name="uid" maxlength="10" autocomplete="off" readonly="readonly" /></td>
+                        </tr>
+                        <tr>
                             <td wdith="20%">姓名:</td>
-                            <td width="80%"><input type="text" value="王雨" class="form-control" name="truename" maxlength="10" autocomplete="off" /></td>
+                            <td width="80%"><input type="text" value="<{$smarty.session.name}>" class="form-control" name="truename" maxlength="10" autocomplete="off" /></td>
                         </tr>
                         <tr>
                             <td wdith="20%">用户名:</td>
-                            <td width="80%"><input type="text" value="admin" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
+                            <td width="80%"><input type="text" value="<{$smarty.session.username}>" class="form-control" name="username" maxlength="10" autocomplete="off" readonly="readonly" /></td>
                         </tr>
                         <tr>
                             <td wdith="20%">电话:</td>
-                            <td width="80%"><input type="text" value="18538078281" class="form-control" name="usertel" maxlength="13" autocomplete="off" /></td>
+                            <td width="80%"><input type="text" value="<{$smarty.session.tel}>" class="form-control" name="usertel" maxlength="13" autocomplete="off" /></td>
                         </tr>
                         <tr>
                             <td wdith="20%">旧密码:</td>
@@ -233,6 +237,7 @@
                         </tfoot>
                     </table>
                 </div>
+                <input type="hidden" name="putId" value="">
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary">提交</button>
@@ -260,24 +265,9 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>::1:55570</td>
-                        <td>2016-01-08 15:50:28</td>
-                        <td>成功</td>
-                    </tr>
-                    <tr>
-                        <td>::1:64377</td>
-                        <td>2016-01-08 10:27:44</td>
-                        <td>成功</td>
-                    </tr>
-                    <tr>
-                        <td>::1:64027</td>
-                        <td>2016-01-08 10:19:25</td>
-                        <td>成功</td>
-                    </tr>
-                    <tr>
-                        <td>::1:57081</td>
-                        <td>2016-01-06 10:35:12</td>
-                        <td>成功</td>
+                        <td>功能暂未实现</td>
+                        <td>功能暂未实现</td>
+                        <td>功能暂未实现</td>
                     </tr>
                     </tbody>
                 </table>
@@ -320,11 +310,9 @@
 <!--右键菜单列表-->
 <div id="rightClickMenu">
     <ul class="list-group rightClickMenuList">
-        <li class="list-group-item disabled">欢迎访问异清轩博客</li>
-        <li class="list-group-item"><span>IP：</span>172.16.10.129</li>
-        <li class="list-group-item"><span>地址：</span>河南省郑州市</li>
-        <li class="list-group-item"><span>系统：</span>Windows10 </li>
-        <li class="list-group-item"><span>浏览器：</span>Chrome47</li>
+        <li class="list-group-item disabled">欢迎访问我的博客</li>
+        <li class="list-group-item"><span>IP：</span>NULL</li>
+        <li class="list-group-item"><span>地址：</span>NULL</li>
     </ul>
 </div>
 <script src="./Public/Admin/Js/bootstrap.min.js"></script>
